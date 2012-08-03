@@ -8,38 +8,8 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
 
   static sqlSybase
   static sqlMySQL
-  static tableName = "acceso_motivo"
+  static tableName = "actividades"
   static columnNames = []
-  
-  static processMeta = { metaData ->
-    columnNames = metaData.columns.collect{ column ->
-      column.name
-    }
-  }
-  
-  static processMetaMySQL = { metaData ->
-    //log.info "${metaData}"
-    //log.info "${metaData.properties}"
-    //log.info "${metaData.dump()}"
-    columnNames = metaData.fields.collect{ column ->
-      column.name
-    }
-  }
-  
-  static processMetaDataConnect = { metaData ->
-    //log.info "${metaData.metaClass}"
-    //log.info "${metaData.properties}"
-    //log.info "${metaData.dump()}"
-    def methods = ('a'..'z')
-    methods.each { l->
-      def method = metaData.metaClass.respondsTo(metaData,"get${l}")
-      def property = metaData.metaClass.hasProperty(metaData,"${l}")
-      //log.info "MetaData has property ${l} = ${property}"
-      //log.info "MetaData has property ${l} = ${property?.dump()}"
-      //log.info "MetaData respondsTo method ${l} = ${method}"
-      //log.info "MetaData has method ${l} = ${method?.dump()}"
-    }
-  }
 
   void setUp(){
     sqlSybase = Sql.newInstance(
@@ -59,7 +29,7 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
   void testConnected(){
     
     def querySimple = "SELECT * FROM " + tableName
-    sqlMySQL.eachRow(querySimple,processMetaMySQL){
+    sqlMySQL.eachRow(querySimple,columnNames = new ProcessMeta().processMetaMySQL){
       columnNames.each{ name ->
         dataMap."$name" = row["$name"] 
       }
