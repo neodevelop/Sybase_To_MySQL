@@ -4,6 +4,7 @@ import groovy.sql.*
 import groovy.util.logging.*
 import java.sql.*
 
+@Log
 class TablaAMigrar{
   def sqlSybase
   def sqlMySQL
@@ -17,6 +18,7 @@ class TablaAMigrar{
   }
   
   TablaAMigrar(){
+    log.info "Starting conection"
     sqlSybase = Sql.newInstance(
         DBParameters.SYBASE_PARAMS.url,
         DBParameters.SYBASE_PARAMS.user,
@@ -32,20 +34,19 @@ class TablaAMigrar{
   }
   
   def migrate(){
+    log.info "Starting migration of table $tableName"
     obtainColumnNames()
     makingBatchOperations(obtainDataFromOrigin().collect { currentMap -> currentMap*.value })
   }
   
   private def obtainColumnNames(){
-    def querySimple = "SELECT * FROM " + tableName
-    sqlMySQL.eachRow(querySimple,processMetaMySQL){ }
+    sqlMySQL.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
   }
   
   private def obtainDataFromOrigin(){
     def data = []
-    def queryFull = "SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName
     //log.info queryFull.toString()
-    sqlSybase.eachRow(queryFull){ row ->
+    sqlSybase.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName)){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
         dataMap."$name" = row["$name"]
