@@ -11,10 +11,23 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
   static tableName = "acceso_motivo"
   static columnNames = []
   static processMeta = { metaData ->
-    log.info "${metaData.properties}"
-    log.info "${metaData.dump()}"
     columnNames = metaData.columns.collect{ column ->
       column.name
+    }
+  }
+  
+  static processMetaDataConnect = { metaData ->
+    log.info "${metaData.metaClass}"
+    log.info "${metaData.properties}"
+    log.info "${metaData.dump()}"
+    def methods = ('a'..'z')
+    methods.each { l->
+      def method = metaData.metaClass.respondsTo(metaData,"get${l}")
+      def property = metaData.metaClass.hasProperty(metaData,"${l}")
+      log.info "MetaData has property ${l} = ${property}"
+      log.info "MetaData has property ${l} = ${property?.dump()}"
+      log.info "MetaData respondsTo method ${l} = ${method}"
+      log.info "MetaData has method ${l} = ${method?.dump()}"
     }
   }
 
@@ -36,7 +49,7 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
   void testConnected(){
     def query = "SELECT * FROM " + tableName
     def data = []
-    sqlSybase.eachRow(query,processMeta){ row ->
+    sqlSybase.eachRow(query,processMetaDataConnect){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
         dataMap."$name" = row["$name"] // Dinamismo en mapas
