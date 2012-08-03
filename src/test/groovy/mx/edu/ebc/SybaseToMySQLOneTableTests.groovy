@@ -10,24 +10,34 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
   static sqlMySQL
   static tableName = "acceso_motivo"
   static columnNames = []
+  
   static processMeta = { metaData ->
     columnNames = metaData.columns.collect{ column ->
       column.name
     }
   }
   
+  static processMetaMySQL = { metaData ->
+    //log.info "${metaData}"
+    //log.info "${metaData.properties}"
+    //log.info "${metaData.dump()}"
+    columnNames = metaData.fields.collect{ column ->
+      column.name
+    }
+  }
+  
   static processMetaDataConnect = { metaData ->
-    log.info "${metaData.metaClass}"
-    log.info "${metaData.properties}"
-    log.info "${metaData.dump()}"
+    //log.info "${metaData.metaClass}"
+    //log.info "${metaData.properties}"
+    //log.info "${metaData.dump()}"
     def methods = ('a'..'z')
     methods.each { l->
       def method = metaData.metaClass.respondsTo(metaData,"get${l}")
       def property = metaData.metaClass.hasProperty(metaData,"${l}")
-      log.info "MetaData has property ${l} = ${property}"
-      log.info "MetaData has property ${l} = ${property?.dump()}"
-      log.info "MetaData respondsTo method ${l} = ${method}"
-      log.info "MetaData has method ${l} = ${method?.dump()}"
+      //log.info "MetaData has property ${l} = ${property}"
+      //log.info "MetaData has property ${l} = ${property?.dump()}"
+      //log.info "MetaData respondsTo method ${l} = ${method}"
+      //log.info "MetaData has method ${l} = ${method?.dump()}"
     }
   }
 
@@ -47,7 +57,16 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
   }
 
   void testConnected(){
-    def query = "SELECT * FROM " + tableName
+    
+    def querySimple = "SELECT * FROM " + tableName
+    sqlMySQL.eachRow(querySimple,processMetaMySQL){
+      columnNames.each{ name ->
+        dataMap."$name" = row["$name"] 
+      }
+    }
+    def queryFull = "SELECT ${columnNames.join(',')} FROM ${tableName}"
+    log.info queryFull.toString()
+    /*
     def data = []
     sqlSybase.eachRow(query,processMetaDataConnect){ row ->
       def dataMap = [:]
@@ -73,5 +92,6 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
         ps.addBatch(d)
       }
     }
+    */
   }
 }
