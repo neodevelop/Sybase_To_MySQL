@@ -1,20 +1,37 @@
 package org.edu.ebc
 
+import static groovyx.gpars.GParsPool.withPool
 import groovy.sql.*
 import groovy.util.logging.*
 import java.sql.*
 
 class SybaseToMySQLOneTableTests extends GroovyTestCase{
   
-  def table
+  def table1
+  def table2
+  def table3
+  def tables
 
   void setUp(){
-    table = new TablaAMigrar()
-    table.tableName = "actividades"
+    table1 = new TablaAMigrar()
+    table1.tableName = "actividades"
+    table2 = new TablaAMigrar()
+    table2.tableName = "acceso_gafete"
+    table3 = new TablaAMigrar()
+    table3.tableName = "bajas_acad_periodos"
+    tables = [table1,table2,table3]
   }
 
   void testMigrate(){
-    def updates = table.migrate()
-    log.info "$updates"
+    log.info "Iniciando migración"
+    withPool{
+      log.info "With pool start"
+      tables.eachParallel{ t ->
+        def u = t.migrate()
+        log.info "$u"
+      }
+      log.info "With pool end"
+    }
+    log.info "Terminando migración"
   }
 }
