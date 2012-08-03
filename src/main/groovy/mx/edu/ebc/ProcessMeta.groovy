@@ -12,7 +12,7 @@ class ProcessMeta {
     //log.info "${metaData}"
     //log.info "${metaData.properties}"
     //log.info "${metaData.dump()}"
-    return metaData.fields.collect{ column ->
+    columnNames = metaData.fields.collect{ column ->
       column.name
     }
   }
