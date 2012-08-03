@@ -64,14 +64,14 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
         dataMap."$name" = row["$name"] 
       }
     }
-    def queryFull = "SELECT ${columnNames.join(',')} FROM ${tableName}"
+    def queryFull = "SELECT ´"+columnNames.join('´,´')+"´ FROM ´"+tableName+"´"
     log.info queryFull.toString()
-    /*
+
     def data = []
-    sqlSybase.eachRow(query,processMetaDataConnect){ row ->
+    sqlSybase.eachRow(queryFull){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
-        dataMap."$name" = row["$name"] // Dinamismo en mapas
+        dataMap."$name" = row["$name"]
       }
       data << dataMap
     }
@@ -92,6 +92,6 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
         ps.addBatch(d)
       }
     }
-    */
+
   }
 }
