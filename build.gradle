@@ -1,0 +1,9 @@
+apply plugin: 'groovy'
+
+dependencies {
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.3'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.1'
+}
