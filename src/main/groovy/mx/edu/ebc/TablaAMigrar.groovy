@@ -32,11 +32,19 @@ class TablaAMigrar{
   }
   
   def migrate(){
+    obtainColumnNames()
+    makingBatchOperations(obtainDataFromOrigin().collect { currentMap -> currentMap*.value })
+  }
+  
+  private def obtainColumnNames(){
     def querySimple = "SELECT * FROM " + tableName
     sqlMySQL.eachRow(querySimple,processMetaMySQL){ }
+  }
+  
+  private def obtainDataFromOrigin(){
+    def data = []
     def queryFull = "SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName
     //log.info queryFull.toString()
-    def data = []
     sqlSybase.eachRow(queryFull){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
@@ -44,12 +52,10 @@ class TablaAMigrar{
       }
       data << dataMap
     }
-
-    def dataValue = []
-    data.each { currentMap ->
-      dataValue << currentMap*.value
-    }
-
+    data
+  }
+  
+  private def makingBatchOperations(dataValue){
     //log.info "$dataValue"
     def parameterCounter = columnNames.size()
     def numberOfParamaters = []
