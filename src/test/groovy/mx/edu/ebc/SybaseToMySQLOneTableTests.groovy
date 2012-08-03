@@ -64,7 +64,7 @@ class SybaseToMySQLOneTableTests extends GroovyTestCase{
         dataMap."$name" = row["$name"] 
       }
     }
-    def queryFull = "SELECT ´"+columnNames.join('´,´')+"´ FROM ´"+tableName+"´"
+    def queryFull = "SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName
     log.info queryFull.toString()
 
     def data = []
