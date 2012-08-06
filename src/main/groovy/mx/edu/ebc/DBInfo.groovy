@@ -6,17 +6,15 @@ import java.sql.*
 
 class DBInfo {
 
-  def sqlSybase
-
   def countRowsPerTableNoCurry = { sql, tableName ->
     (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
 
   def countRowsPerTable = countRowsPerTableNoCurry.curry(DB.sqlSybase)
 
-  def getTableNames(){
+  def getTableNamesNoCurry = { sql ->
     def tableNames = []
-    DatabaseMetaData dbm = sqlSybase.connection.metaData
+    DatabaseMetaData dbm = sql.connection.metaData
     //log.info dbm.properties
     def types = ["TABLE"]
     ResultSet rs = dbm.getTables(null,null,"%",types as String[])
@@ -24,18 +22,6 @@ class DBInfo {
       tableNames << rs.getString("TABLE_NAME")
     }
     tableNames
-  }
-
-  def countRowsPerTablesNames(tableNames){
-    def result = [:]
-    tableNames.each{ tableName ->
-      result."$tableName" = countRows(tableName)
-    }
-    result
-  }
-
-  private def countRows(tableName){
-    (sqlSybase.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
 
 }
