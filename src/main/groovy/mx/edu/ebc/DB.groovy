@@ -4,9 +4,9 @@ import groovy.sql.*
 
 class DB{
 
-  def sqlSybase
+  static sqlSybase;
 
-  DB(){
+  static {
     sqlSybase = Sql.newInstance(
       DBParameters.SYBASE_PARAMS.url,
       DBParameters.SYBASE_PARAMS.user,
@@ -15,15 +15,9 @@ class DB{
     )
   }
 
-  def countRowsPerTable(tableNames){
-    def result = [:]
-    tableNames.each{ tableName ->
-      result."$tableName" = countRows(tableName)
-    }
-    result
+  static withSybaseInstance(closure){
+    closure(sqlSybase)
   }
 
-  private def countRows(tableName){
-    (sqlSybase.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
-  }
+  
 }

@@ -8,14 +8,11 @@ class DBInfo {
 
   def sqlSybase
 
-  DBInfo(){
-    sqlSybase = Sql.newInstance(
-      DBParameters.SYBASE_PARAMS.url,
-      DBParameters.SYBASE_PARAMS.user,
-      DBParameters.SYBASE_PARAMS.password,
-      DBParameters.SYBASE_PARAMS.driver
-    )
+  def countRowsPerTableNoCurry = { sql, tableName ->
+    (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
+
+  def countRowsPerTable = countRowsPerTableNoCurry.curry(DB.sqlSybase)
 
   def getTableNames(){
     def tableNames = []
@@ -28,4 +25,17 @@ class DBInfo {
     }
     tableNames
   }
+
+  def countRowsPerTablesNames(tableNames){
+    def result = [:]
+    tableNames.each{ tableName ->
+      result."$tableName" = countRows(tableName)
+    }
+    result
+  }
+
+  private def countRows(tableName){
+    (sqlSybase.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
+  }
+
 }
