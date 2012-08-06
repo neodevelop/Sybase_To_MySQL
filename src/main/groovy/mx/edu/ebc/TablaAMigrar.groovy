@@ -6,8 +6,6 @@ import java.sql.*
 
 @Log
 class TablaAMigrar{
-  def sqlSybase
-  def sqlMySQL
   def tableName
   def columnNames = []
   
@@ -19,38 +17,26 @@ class TablaAMigrar{
   
   TablaAMigrar(){
     log.info "Starting conection"
-    sqlSybase = Sql.newInstance(
-        DBParameters.SYBASE_PARAMS.url,
-        DBParameters.SYBASE_PARAMS.user,
-        DBParameters.SYBASE_PARAMS.password,
-        DBParameters.SYBASE_PARAMS.driver
-      )
-    sqlMySQL = Sql.newInstance(
-        DBParameters.MYSQL_PARAMS.url,
-        DBParameters.MYSQL_PARAMS.user,
-        DBParameters.MYSQL_PARAMS.password,
-        DBParameters.MYSQL_PARAMS.driver
-      )
   }
   
-  def migrate(){
+  def migrate = { sqlOrigin,sqlDestiny ->
     log.info "Starting migration of table $tableName"
-    obtainColumnNames()
-    makingBatchOperations(obtainDataFromOrigin().collect { currentMap -> currentMap*.value })
+    obtainColumnNames(sqlOrigin)
+    makingBatchOperations(sqlDestiny,obtainDataFromOrigin(sqlDestiny).collect { currentMap -> currentMap*.value })
   }
 
-  def count(){
-    (sqlSybase.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
+  def count = { sql ->
+    (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
   
-  private def obtainColumnNames(){
-    sqlMySQL.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
+  private def obtainColumnNames(sql){
+    sql.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
   }
   
-  private def obtainDataFromOrigin(){
+  private def obtainDataFromOrigin(sql){
     def data = []
     //log.info queryFull.toString()
-    sqlSybase.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName)){ row ->
+    sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName)){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
         dataMap."$name" = row["$name"]
@@ -60,14 +46,14 @@ class TablaAMigrar{
     data
   }
   
-  private def makingBatchOperations(dataValue){
+  private def makingBatchOperations(sql,dataValue){
     //log.info "$dataValue"
     def parameterCounter = columnNames.size()
     def numberOfParamaters = []
     parameterCounter.times { numberOfParamaters << '?' }
     def insertSql = "INSERT INTO " + tableName + "("+columnNames.join(',')+") values (" + numberOfParamaters.join(',') +");"
     //log.info insertSql
-    def updateCounts = sqlMySQL.withBatch(insertSql) { ps ->
+    def updateCounts = sql.withBatch(insertSql) { ps ->
       dataValue.each { d ->
         ps.addBatch(d)
       }
