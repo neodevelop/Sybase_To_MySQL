@@ -16,13 +16,25 @@ class TablaAMigrar{
   }
   
   TablaAMigrar(){
-    log.info "Starting conection"
+    
   }
   
-  def migrate = { sqlOrigin,sqlDestiny ->
-    log.info "Starting migration of table $tableName"
-    obtainColumnNames(sqlOrigin)
-    makingBatchOperations(sqlDestiny,obtainDataFromOrigin(sqlDestiny).collect { currentMap -> currentMap*.value })
+  def migrate() {
+
+    def data
+    def result
+
+    DB.withMySQLInstance { sql ->
+      obtainColumnNames(sql)
+    }
+
+    DB.withSybaseInstance() { sql ->
+      data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
+    }
+    DB.withMySQLInstance { sql ->
+      result = makingBatchOperations(sql,data)
+    }
+    result
   }
 
   def count = { sql ->
