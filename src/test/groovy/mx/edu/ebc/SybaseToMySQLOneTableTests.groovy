@@ -5,7 +5,7 @@ import groovy.sql.*
 import groovy.util.logging.*
 import java.sql.*
 
-class SybaseToMySQLOneTableTests extends GroovyTestCase{
+class SybaseToMySQLOneTableTests extends groovy.util.GroovyTestCase{
   
   def tables
 

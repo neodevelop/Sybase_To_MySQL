@@ -2,7 +2,7 @@ package org.edu.ebc
 
 import groovy.sql.*
 
-class PingTests extends GroovyTestCase{
+class PingTests extends groovy.util.GroovyTestCase{
 
 	def sqlSybase
 

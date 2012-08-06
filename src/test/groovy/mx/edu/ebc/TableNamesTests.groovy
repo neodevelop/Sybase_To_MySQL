@@ -4,7 +4,7 @@ import groovy.sql.*
 import groovy.util.logging.*
 import java.sql.*
 
-class TableNamesTests extends GroovyTestCase {
+class TableNamesTests extends groovy.util.GroovyTestCase {
 
   def dbInfo
 

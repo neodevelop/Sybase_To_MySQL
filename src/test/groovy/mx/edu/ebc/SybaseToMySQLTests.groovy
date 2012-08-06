@@ -1,6 +1,8 @@
 package org.edu.ebc
 
-class SybaseToMySQLTests extends GroovyTestCase {
+import groovy.sql.*
+
+class SybaseToMySQLTests extends groovy.util.GroovyTestCase {
 
   def currentTable
   def dbInfo
@@ -23,5 +25,9 @@ class SybaseToMySQLTests extends GroovyTestCase {
       thisTable.tableName = tableName
       log.info "${thisTable.count()}"
     }
+    //def r = DB.withOneConnection { sql ->
+    //  (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
+    //}
+    //log.info "${r}"
   }
 }
