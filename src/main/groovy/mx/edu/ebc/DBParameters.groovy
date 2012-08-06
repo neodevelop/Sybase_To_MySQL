@@ -1,4 +1,4 @@
-package org.edu.ebc
+package mx.edu.ebc
 
 interface DBParameters{
   def SYBASE_PARAMS = [
