@@ -27,7 +27,7 @@ class DB{
   }
 
   static withMySQLInstance(closure){
-    closure(sqlSybase)
+    closure(sqlMySQL)
   }
 
   
