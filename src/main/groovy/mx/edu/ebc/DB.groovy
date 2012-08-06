@@ -5,6 +5,7 @@ import groovy.sql.*
 class DB{
 
   static sqlSybase;
+  static sqlMySQL;
 
   static {
     sqlSybase = Sql.newInstance(
@@ -13,9 +14,19 @@ class DB{
       DBParameters.SYBASE_PARAMS.password,
       DBParameters.SYBASE_PARAMS.driver
     )
+    sqlMySQL = Sql.newInstance(
+      DBParameters.MYSQL_PARAMS.url,
+      DBParameters.MYSQL_PARAMS.user,
+      DBParameters.MYSQL_PARAMS.password,
+      DBParameters.MYSQL_PARAMS.driver
+    )
   }
 
   static withSybaseInstance(closure){
+    closure(sqlSybase)
+  }
+
+  static withMySQLInstance(closure){
     closure(sqlSybase)
   }
 
