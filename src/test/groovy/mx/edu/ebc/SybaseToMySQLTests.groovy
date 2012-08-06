@@ -15,4 +15,13 @@ class SybaseToMySQLTests extends GroovyTestCase {
     assertNotNull currentTable
     assert currentTable.count() > 0
   }
+
+  void testCountRowsForAllTables(){
+    def tableNames = dbInfo.tableNames
+    tableNames.each{ tableName ->
+      def thisTable = new TablaAMigrar()
+      thisTable.tableName = tableName
+      log.info "${thisTable.count()}"
+    }
+  }
 }
