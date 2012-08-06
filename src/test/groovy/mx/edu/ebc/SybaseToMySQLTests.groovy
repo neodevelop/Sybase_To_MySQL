@@ -20,10 +20,9 @@ class SybaseToMySQLTests extends groovy.util.GroovyTestCase {
 
   void testCountRowsForAllTables(){
     def tableNames = dbInfo.tableNames
-    tableNames.each{ tableName ->
-      def thisTable = new TablaAMigrar()
-      thisTable.tableName = tableName
-      log.info "${thisTable.count()}"
+    def rowsPerTable = new DB().countRowsPerTable(tableNames)
+    rowsPerTable.each { k,v ->
+      log.info "$k tiene $v registros"
     }
     //def r = DB.withOneConnection { sql ->
     //  (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
