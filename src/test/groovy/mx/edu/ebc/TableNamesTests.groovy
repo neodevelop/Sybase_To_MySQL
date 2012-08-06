@@ -1,4 +1,4 @@
-package org.edu.ebc
+package mx.edu.ebc
 
 import groovy.sql.*
 import groovy.util.logging.*
