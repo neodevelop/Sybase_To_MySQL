@@ -38,6 +38,10 @@ class TablaAMigrar{
     obtainColumnNames()
     makingBatchOperations(obtainDataFromOrigin().collect { currentMap -> currentMap*.value })
   }
+
+  def count(){
+    (sqlSybase.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
+  }
   
   private def obtainColumnNames(){
     sqlMySQL.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
