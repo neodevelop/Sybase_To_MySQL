@@ -1,34 +1,39 @@
 package mx.edu.ebc
 
 import groovy.sql.*
+import com.mchange.v2.c3p0.ComboPooledDataSource
 
+@Singleton
 class DB{
 
-  static sqlSybase;
-  static sqlMySQL;
+  def sqlSybase
+  def sqlMySQL
 
-  static {
-    sqlSybase = Sql.newInstance(
-      DBParameters.SYBASE_PARAMS.url,
-      DBParameters.SYBASE_PARAMS.user,
-      DBParameters.SYBASE_PARAMS.password,
-      DBParameters.SYBASE_PARAMS.driver
-    )
-    sqlMySQL = Sql.newInstance(
-      DBParameters.MYSQL_PARAMS.url,
-      DBParameters.MYSQL_PARAMS.user,
-      DBParameters.MYSQL_PARAMS.password,
-      DBParameters.MYSQL_PARAMS.driver
-    )
+  private DB() {
+
+    ComboPooledDataSource sybase = new ComboPooledDataSource(
+      driverClass:DBParameters.SYBASE_PARAMS.driver,
+      jdbcUrl:DBParameters.SYBASE_PARAMS.url,
+      user:DBParameters.SYBASE_PARAMS.user,
+      password:DBParameters.SYBASE_PARAMS.password
+    );
+    sqlSybase = Sql.newInstance(sybase)
+
+    ComboPooledDataSource mysql = new ComboPooledDataSource(
+      driverClass:DBParameters.MYSQL_PARAMS.driver,
+      jdbcUrl:DBParameters.MYSQL_PARAMS.url,
+      user:DBParameters.MYSQL_PARAMS.user,
+      password:DBParameters.MYSQL_PARAMS.password
+    );
+    sqlMySQL = Sql.newInstance(mysql)
   }
 
-  static withSybaseInstance(closure){
+  def withSybaseInstance(closure){
     closure(sqlSybase)
   }
 
-  static withMySQLInstance(closure){
+  def withMySQLInstance(closure){
     closure(sqlMySQL)
   }
 
-  
 }
