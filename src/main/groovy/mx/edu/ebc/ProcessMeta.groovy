@@ -1,4 +1,4 @@
-package org.edu.ebc
+package mx.edu.ebc
 
 class ProcessMeta {
   

@@ -1,4 +1,4 @@
-package org.edu.ebc
+package mx.edu.ebc
 
 import static groovyx.gpars.GParsPool.withPool
 import groovy.sql.*
