@@ -1,7 +1,5 @@
 package mx.edu.ebc
 
-import groovy.sql.*
-
 class SybaseToMySQLTests extends groovy.util.GroovyTestCase {
 
   def currentTable

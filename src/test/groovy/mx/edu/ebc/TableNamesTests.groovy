@@ -1,9 +1,5 @@
 package mx.edu.ebc
 
-import groovy.sql.*
-import groovy.util.logging.*
-import java.sql.*
-
 class TableNamesTests extends groovy.util.GroovyTestCase {
 
   def dbInfo

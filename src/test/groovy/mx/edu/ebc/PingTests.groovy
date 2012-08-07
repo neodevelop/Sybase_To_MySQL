@@ -1,7 +1,5 @@
 package mx.edu.ebc
 
-import groovy.sql.*
-
 class PingTests extends groovy.util.GroovyTestCase{
 
 	void setUp(){

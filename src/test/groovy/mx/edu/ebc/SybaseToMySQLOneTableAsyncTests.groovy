@@ -1,9 +1,6 @@
 package mx.edu.ebc
 
 import static groovyx.gpars.GParsPool.withPool
-import groovy.sql.*
-import groovy.util.logging.*
-import java.sql.*
 
 class SybaseToMySQLOneTableAsyncTests extends groovy.util.GroovyTestCase{
   
