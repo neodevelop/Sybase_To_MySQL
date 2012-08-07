@@ -40,15 +40,14 @@ class SybaseToMySQLTests extends groovy.util.GroovyTestCase {
     //rowsPerTable.each { k,v ->
     // log.info "$k tiene $v registros"
     //}
-    /*
+
     DB.instance.withSybaseInstance { sql ->
       tableNames.each { tn ->
         def dbInfo = new DBInfo()
         def c = dbInfo.countRowsPerTable(tn)
-        log.info "${c}"
+        log.info "$tn tiene $c registros"
       }
     }
-    */
   }
 
 }

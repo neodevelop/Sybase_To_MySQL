@@ -15,7 +15,7 @@ class DBInfo {
   def getTableNamesNoCurry = { sql ->
     def tableNames = []
     log.info "${sql.dump()}"
-    DatabaseMetaData dbm = sql.connection.metaData
+    DatabaseMetaData dbm = sql.dataSource.connection.metaData
     //log.info dbm.properties
     def types = ["TABLE"]
     ResultSet rs = dbm.getTables(null,null,"%",types as String[])
