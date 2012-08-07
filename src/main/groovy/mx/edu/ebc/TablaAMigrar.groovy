@@ -30,7 +30,11 @@ class TablaAMigrar{
       data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
     }
     DB.instance.withMySQLInstance { sql ->
-      result = makingBatchOperations(sql,data)
+      try{
+        result = makingBatchOperations(sql,data)
+      }catch(Throwable e){
+        log.info "***Error insertando datos en $tableName ***"
+      }
     }
     result
   }
