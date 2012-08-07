@@ -25,4 +25,22 @@ class DBInfo {
     tableNames
   }
 
+
+  def getPrimaryKey = { sql, tableName ->
+
+     def primariesKeys = []
+     DatabaseMetaData meta = sql.dataSource.connection.metaData
+     ResultSet rs = meta.getPrimaryKeys("","",tableName)
+
+      while (rs.next()) {
+
+          def columnName =  rs.getString("COLUMN_NAME")
+          primariesKeys << columnName
+         // log.info  "La columna es : $columnName"
+
+      }
+      primariesKeys
+  }
+
+
 }

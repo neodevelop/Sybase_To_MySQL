@@ -70,5 +70,70 @@ class TablaAMigrar{
     }
     updateCounts
   }
-  
+
+  def migrateBigTable() {
+
+      def data
+      def result
+
+      def sqlMySql =   DB.instance.sqlMySQL
+      def sqlSybase = DB.instance.sqlSybase
+
+      obtainColumnNames(sqlMySql)
+
+
+      int offset = 1
+      int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
+      boolean  continuaProceso = true
+      def temp = maximo
+
+      def numRows
+
+      DB.instance.withSybaseInstance() { sql ->
+          numRows = count(sql)
+      }
+
+      log.info "El numero de renglones para la tabla $tableName  es : $numRows"
+
+      while (continuaProceso) {
+
+
+      if (offset + maximo > numRows) {
+
+            temp = numRows - offset +1
+
+        }
+
+      data = obtainDataFromOrigin(sqlSybase,offset,temp).collect { currentMap -> currentMap*.value }
+
+      result = makingBatchOperations(sqlMySql,data)
+
+       offset += maximo
+
+       if (offset > numRows)
+           break
+
+      }
+
+      log.info "Proceso de migracion de tabla terminado"
+
+      result
+
+
+  }
+
+
+    private def obtainDataFromOrigin(sql, offset, limit){
+        def data = []
+        //log.info queryFull.toString()
+        sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName),offset,limit){ row ->
+            def dataMap = [:]
+            columnNames.each{ name ->
+                dataMap."$name" = row["$name"]
+            }
+            data << dataMap
+        }
+        data
+    }
+
 }

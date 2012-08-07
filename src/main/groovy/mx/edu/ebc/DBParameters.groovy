@@ -15,4 +15,6 @@ interface DBParameters{
     password:"s1b4s3",
     driver:"com.mysql.jdbc.Driver"
   ]
+
+  def SYBASE_SELECT_MAX_ROWS=1000
 }
