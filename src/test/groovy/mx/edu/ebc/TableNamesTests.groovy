@@ -9,7 +9,9 @@ class TableNamesTests extends groovy.util.GroovyTestCase {
   }
 
   void testGetTableNames(){
-    assert dbInfo.tableNames
+    DB.instance.withSybaseInstance { sql ->
+      assert dbInfo.getTableNamesNoCurry(sql)
+    }
   }
 
 }

@@ -1,19 +1,20 @@
 package mx.edu.ebc
 
-import groovy.sql.*
-import groovy.util.logging.*
 import java.sql.*
+import groovy.util.logging.Log
 
+@Log
 class DBInfo {
 
   def countRowsPerTableNoCurry = { sql, tableName ->
     (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
 
-  def countRowsPerTable = countRowsPerTableNoCurry.curry(DB.sqlSybase)
+  def countRowsPerTable = countRowsPerTableNoCurry.curry(DB.instance.sqlSybase)
 
   def getTableNamesNoCurry = { sql ->
     def tableNames = []
+    log.info "${sql.dump()}"
     DatabaseMetaData dbm = sql.connection.metaData
     //log.info dbm.properties
     def types = ["TABLE"]

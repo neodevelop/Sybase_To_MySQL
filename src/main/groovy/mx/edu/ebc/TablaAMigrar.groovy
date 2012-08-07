@@ -1,8 +1,6 @@
 package mx.edu.ebc
 
-import groovy.sql.*
 import groovy.util.logging.*
-import java.sql.*
 
 @Log
 class TablaAMigrar{
@@ -24,14 +22,14 @@ class TablaAMigrar{
     def data
     def result
 
-    DB.withMySQLInstance { sql ->
+    DB.instance.withMySQLInstance { sql ->
       obtainColumnNames(sql)
     }
 
-    DB.withSybaseInstance() { sql ->
+    DB.instance.withSybaseInstance() { sql ->
       data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
     }
-    DB.withMySQLInstance { sql ->
+    DB.instance.withMySQLInstance { sql ->
       result = makingBatchOperations(sql,data)
     }
     result
