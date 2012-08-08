@@ -18,15 +18,18 @@ class TablaAMigrar{
   }
   
   def migrate() {
-
     def data
     def result
-
+    def exception =""
+    def numRows
+    def numRowsMySQL
     DB.instance.withMySQLInstance { sql ->
       obtainColumnNames(sql)
     }
-
-    DB.instance.withSybaseInstance() { sql ->
+     DB.instance.withSybaseInstance() { sql ->
+       numRows = count(sql)
+     }
+      DB.instance.withSybaseInstance() { sql ->
       data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
     }
     DB.instance.withMySQLInstance { sql ->
@@ -34,9 +37,13 @@ class TablaAMigrar{
         result = makingBatchOperations(sql,data)
       }catch(Throwable e){
         log.info "***Error insertando datos en $tableName ***"
+          exception= e.message
       }
     }
-    result
+      DB.instance.withMySQLInstance() { sql ->
+          numRowsMySQL = count(sql)
+      }
+      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|$exception"
   }
 
   def count = { sql ->
@@ -65,7 +72,9 @@ class TablaAMigrar{
     def parameterCounter = columnNames.size()
     def numberOfParamaters = []
     parameterCounter.times { numberOfParamaters << '?' }
-    def insertSql = "INSERT INTO " + tableName + "("+columnNames.join(',')+") values (" + numberOfParamaters.join(',') +");"
+    def temporal = columnNames.join(',')
+    temporal = cleanReservadesWord(temporal)
+    def insertSql = "INSERT INTO " + tableName + "("+temporal+") values (" + numberOfParamaters.join(',') +");"
     //log.info insertSql
     def updateCounts = sql.withBatch(insertSql) { ps ->
       dataValue.each { d ->
@@ -76,56 +85,40 @@ class TablaAMigrar{
   }
 
   def migrateBigTable() {
-
       def data
-      def result
-
+      def result=0
       def sqlMySql =   DB.instance.sqlMySQL
       def sqlSybase = DB.instance.sqlSybase
-
+      def exception=""
       obtainColumnNames(sqlMySql)
-
-
       int offset = 1
       int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
-      boolean  continuaProceso = true
       def temp = maximo
-
-      def numRows
-
-      DB.instance.withSybaseInstance() { sql ->
-          numRows = count(sql)
-      }
-
+      def numRows = count(sqlSybase)
+      def numRowsMySQL
       log.info "El numero de renglones para la tabla $tableName  es : $numRows"
-
-      while (continuaProceso) {
-
-
-      if (offset + maximo > numRows) {
-
-            temp = numRows - offset +1
-
-        }
-
-      data = obtainDataFromOrigin(sqlSybase,offset,temp).collect { currentMap -> currentMap*.value }
-
-      result = makingBatchOperations(sqlMySql,data)
-
-       offset += maximo
-
-       if (offset > numRows)
-           break
-
+      while (true) {
+          if (offset + maximo > numRows) {
+                temp = numRows - offset +1
+           }
+          try {
+              data = obtainDataFromOrigin(sqlSybase,offset,temp).collect { currentMap -> currentMap*.value }
+              result = makingBatchOperations(sqlMySql,data)
+          }catch(Throwable e){
+              log.info "***Error insertando datos en $tableName ***"
+              exception= e.message
+              break
+          }
+          offset += maximo
+          if (offset > numRows)
+               break
       }
-
       log.info "Proceso de migracion de tabla terminado"
+      numRowsMySQL = count(sqlMySql)
 
-      result
-
+     return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|$exception"
 
   }
-
 
     private def obtainDataFromOrigin(sql, offset, limit){
         def data = []
@@ -140,4 +133,10 @@ class TablaAMigrar{
         data
     }
 
+    private def cleanReservadesWord(word) {
+        if (word.indexOf("long")>=0) {
+            word =  word.replaceFirst("long","`long`")
+        }
+        return word
+    }
 }

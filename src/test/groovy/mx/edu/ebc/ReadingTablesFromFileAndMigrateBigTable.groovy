@@ -1,9 +1,8 @@
 package mx.edu.ebc
 
 import static groovyx.gpars.GParsPool.withPool
-import groovy.sql.DataSet
 
-class ReadingTablesFromFileAndMigrate extends GroovyTestCase {
+class ReadingTablesFromFileAndMigrateBigTable extends GroovyTestCase {
   def migrateInfo
 
   void setUp(){
@@ -27,7 +26,7 @@ class ReadingTablesFromFileAndMigrate extends GroovyTestCase {
     withPool {
       tablesToMigrate.eachParallel { tableToMigrate ->
         log.info "Migrando la tabla $tableToMigrate.tableName"
-        def migrationData=tableToMigrate.migrate()
+        def migrationData=tableToMigrate.migrateBigTable()
         log.info "Tabla $tableToMigrate.tableName migrada con el resultado $migrationData"
         migrateInfo.saveResultToFile(migrationData+"\n")
       }
