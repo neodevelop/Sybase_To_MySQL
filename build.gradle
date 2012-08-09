@@ -21,5 +21,9 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '0.9'
+    gradleVersion = '1.1'
+}
+
+task holaMundo << {
+  println "hola mundo!"
 }
