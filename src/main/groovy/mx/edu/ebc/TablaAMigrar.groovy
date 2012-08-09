@@ -29,6 +29,7 @@ class TablaAMigrar{
      DB.instance.withSybaseInstance() { sql ->
        numRows = count(sql)
      }
+     def tiempoInicial = new Date()
       DB.instance.withSybaseInstance() { sql ->
       data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
     }
@@ -40,10 +41,11 @@ class TablaAMigrar{
           exception= e.message
       }
     }
+     def tiempoFinal=new Date()
       DB.instance.withMySQLInstance() { sql ->
           numRowsMySQL = count(sql)
       }
-      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|$exception"
+      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +( (tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
   }
 
   def count = { sql ->
@@ -97,6 +99,7 @@ class TablaAMigrar{
       def numRows = count(sqlSybase)
       def numRowsMySQL
       log.info "El numero de renglones para la tabla $tableName  es : $numRows"
+      def tiempoInicial = new Date()
       while (true) {
           if (offset + maximo > numRows) {
                 temp = numRows - offset +1
@@ -113,10 +116,11 @@ class TablaAMigrar{
           if (offset > numRows)
                break
       }
+      def tiempoFinal=new Date()
       log.info "Proceso de migracion de tabla terminado"
       numRowsMySQL = count(sqlMySql)
 
-     return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|$exception"
+     return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
 
   }
 
