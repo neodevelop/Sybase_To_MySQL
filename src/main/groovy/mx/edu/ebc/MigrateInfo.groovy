@@ -10,7 +10,7 @@ class MigrateInfo {
     def dia = new Date()
     def formatter = new SimpleDateFormat("ddMMyyyyHHmmss")
     file = new File("${System.properties['user.home']}/tablas.txt")
-    def nombreArchivo= formatter.format(dia) + ".txt"
+    def nombreArchivo= "resultado"+formatter.format(dia) + ".txt"
     fileResult = new File("${System.properties['user.home']}/$nombreArchivo")
     fileResult.createNewFile()
   }
