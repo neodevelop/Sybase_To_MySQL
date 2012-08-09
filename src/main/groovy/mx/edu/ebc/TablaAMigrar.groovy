@@ -38,10 +38,11 @@ class TablaAMigrar{
         result = makingBatchOperations(sql,data)
       }catch(Throwable e){
         log.info "***Error insertando datos en $tableName ***"
-          exception= e.message
+        delete(sql,tableName)
+        exception= e.message
       }
     }
-     def tiempoFinal=new Date()
+    def tiempoFinal=new Date()
       DB.instance.withMySQLInstance() { sql ->
           numRowsMySQL = count(sql)
       }
@@ -51,7 +52,11 @@ class TablaAMigrar{
   def count = { sql ->
     (sql.firstRow("SELECT COUNT(*) AS counter FROM " + tableName))["counter"]
   }
-  
+
+  def delete = { sql, tableName ->
+   sql.executeUpdate("delete from $tableName")
+  }
+
   private def obtainColumnNames(sql){
     sql.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
   }
@@ -109,6 +114,7 @@ class TablaAMigrar{
               result = makingBatchOperations(sqlMySql,data)
           }catch(Throwable e){
               log.info "***Error insertando datos en $tableName ***"
+              delete(sqlMySql,tableName)
               exception= e.message
               break
           }
@@ -119,9 +125,7 @@ class TablaAMigrar{
       def tiempoFinal=new Date()
       log.info "Proceso de migracion de tabla terminado"
       numRowsMySQL = count(sqlMySql)
-
      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
-
   }
 
     private def obtainDataFromOrigin(sql, offset, limit){
