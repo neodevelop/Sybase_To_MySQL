@@ -1,5 +1,4 @@
 build/
-gradle/
 .gradle/
 Sybase_To_MySQL.iml
 Sybase_To_MySQL.ipr
