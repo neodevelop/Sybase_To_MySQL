@@ -18,35 +18,18 @@ class TablaAMigrar{
   }
   
   def migrate() {
-    def data
-    def result
-    def exception =""
-    def numRows
-    def numRowsMySQL
-    DB.instance.withMySQLInstance { sql ->
-      obtainColumnNames(sql)
-    }
-     DB.instance.withSybaseInstance() { sql ->
-       numRows = count(sql)
-     }
-     def tiempoInicial = new Date()
+      def numRows
       DB.instance.withSybaseInstance() { sql ->
-      data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
-    }
-    DB.instance.withMySQLInstance { sql ->
-      try{
-        result = makingBatchOperations(sql,data)
-      }catch(Throwable e){
-        log.info "***Error insertando datos en $tableName ***"
-        delete(sql,tableName)
-        exception= e.message
+          numRows = count(sql)
       }
-    }
-    def tiempoFinal=new Date()
-      DB.instance.withMySQLInstance() { sql ->
-          numRowsMySQL = count(sql)
+
+      if (numRows <= DBParameters.SYBASE_SELECT_MAX_ROWS) {
+          migrateSmallTable(numRows)
+      } else {
+
+          migrateBigTable(numRows)
       }
-      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +( (tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
+
   }
 
   def count = { sql ->
@@ -54,7 +37,7 @@ class TablaAMigrar{
   }
 
   def delete = { sql, tableName ->
-   sql.executeUpdate("delete from $tableName")
+   sql.executeUpdate("delete from isybase.$tableName")
   }
 
   private def obtainColumnNames(sql){
@@ -91,7 +74,37 @@ class TablaAMigrar{
     updateCounts
   }
 
-  def migrateBigTable() {
+  private def migrateSmallTable(def numRows) {
+
+      def data
+      def result
+      def exception =""
+      def numRowsMySQL
+      DB.instance.withMySQLInstance { sql ->
+          obtainColumnNames(sql)
+      }
+      def tiempoInicial = new Date()
+      DB.instance.withSybaseInstance() { sql ->
+          data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
+      }
+      DB.instance.withMySQLInstance { sql ->
+          try{
+              result = makingBatchOperations(sql,data)
+          }catch(Throwable e){
+              log.info "***Error insertando datos en $tableName ***"
+              exception= e.message
+              delete(sql,tableName)
+          }
+      }
+      def tiempoFinal=new Date()
+      DB.instance.withMySQLInstance() { sql ->
+          numRowsMySQL = count(sql)
+      }
+      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +( (tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
+  }
+
+
+  private def migrateBigTable(def numRows) {
       def data
       def result=0
       def sqlMySql =   DB.instance.sqlMySQL
@@ -101,7 +114,6 @@ class TablaAMigrar{
       int offset = 1
       int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
       def temp = maximo
-      def numRows = count(sqlSybase)
       def numRowsMySQL
       log.info "El numero de renglones para la tabla $tableName  es : $numRows"
       def tiempoInicial = new Date()
@@ -112,13 +124,13 @@ class TablaAMigrar{
           try {
               log.info "Obteniendo la informacion de la tabla $tableName"
               data = obtainDataFromOrigin(sqlSybase,offset,temp).collect { currentMap -> currentMap*.value }
-              log.info "Persistiendo la informacion de la tabla $tableName ne MYSQL"
+              log.info "Persistiendo la informacion de la tabla $tableName en MYSQL"
               result = makingBatchOperations(sqlMySql,data)
               log.info "Informacion  persistida en la tabla $tableName de mysql"
           }catch(Throwable e){
+              exception= e.message
               log.info "***Error insertando datos en $tableName ***"
               delete(sqlMySql,tableName)
-              exception= e.message
               break
           }
           offset += maximo

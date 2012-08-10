@@ -6,7 +6,7 @@ class SybaseToMySQLOneTableTests extends groovy.util.GroovyTestCase{
 
   void setUp(){
     table1 = new TablaAMigrar()
-    table1.tableName = "bitacora_general"
+    table1.tableName = "servicios"
   }
 
   void testMigrate(){

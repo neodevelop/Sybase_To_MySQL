@@ -16,5 +16,7 @@ interface DBParameters{
     driver:"com.mysql.jdbc.Driver"
   ]
 
-  def SYBASE_SELECT_MAX_ROWS=1000
+  def SYBASE_SELECT_MAX_ROWS=4000
+
+  def MAX_ROWS_MIGRATE=5000
 }
