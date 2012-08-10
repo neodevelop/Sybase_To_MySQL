@@ -22,14 +22,11 @@ class TablaAMigrar{
       DB.instance.withSybaseInstance() { sql ->
           numRows = count(sql)
       }
-
       if (numRows <= DBParameters.SYBASE_SELECT_MAX_ROWS) {
           migrateSmallTable(numRows)
       } else {
-
           migrateBigTable(numRows)
       }
-
   }
 
   def count = { sql ->
