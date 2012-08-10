@@ -16,9 +16,9 @@ class DB{
       jdbcUrl:DBParameters.SYBASE_PARAMS.url,
       user:DBParameters.SYBASE_PARAMS.user,
       password:DBParameters.SYBASE_PARAMS.password,
-      minPoolSize: 10,
-      maxPoolSize: 50,
-      acquireIncrement: 5
+      minPoolSize: 30,
+      maxPoolSize: 150,
+      acquireIncrement: 20
     );
 
     sqlSybase = Sql.newInstance(sybase)
@@ -28,9 +28,9 @@ class DB{
       jdbcUrl:DBParameters.MYSQL_PARAMS.url,
       user:DBParameters.MYSQL_PARAMS.user,
       password:DBParameters.MYSQL_PARAMS.password,
-      minPoolSize: 10,
-      maxPoolSize: 50,
-      acquireIncrement: 5
+      minPoolSize: 30,
+      maxPoolSize: 150,
+      acquireIncrement: 20
 
     );
     sqlMySQL = Sql.newInstance(mysql)

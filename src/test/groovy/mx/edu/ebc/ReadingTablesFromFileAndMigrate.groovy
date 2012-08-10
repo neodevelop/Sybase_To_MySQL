@@ -24,7 +24,7 @@ class ReadingTablesFromFileAndMigrate extends GroovyTestCase {
       tablesToMigrate << table
     }
     assertEquals tablesToMigrate.size(), migrateInfo.obtainTablesNamesFromFile().size()
-    withPool {
+    withPool(50) {
       tablesToMigrate.eachParallel { tableToMigrate ->
         log.info "Migrando la tabla $tableToMigrate.tableName"
         def migrationData=tableToMigrate.migrate()

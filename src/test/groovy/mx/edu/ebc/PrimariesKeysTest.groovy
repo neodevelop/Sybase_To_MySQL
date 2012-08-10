@@ -31,19 +31,4 @@ class PrimariesKeysTest extends GroovyTestCase {
 
   }
 
-  void testGetDataPage() {
-
-      def columnsNames ;
-      DB.instance.withMySQLInstance { sql ->
-        columnsNames= obtainColumnNames(sql)
-      }
-
-
-
-
-  }
-
-
-
-
 }
