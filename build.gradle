@@ -1,5 +1,10 @@
 apply plugin: 'groovy'
 apply plugin: 'idea'
+
+test {
+    jvmArgs '-Xms1024m', '-Xmx1024m'
+}
+
 repositories {
     mavenCentral()
     mavenLocal()

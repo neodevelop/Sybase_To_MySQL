@@ -15,15 +15,23 @@ class DB{
       driverClass:DBParameters.SYBASE_PARAMS.driver,
       jdbcUrl:DBParameters.SYBASE_PARAMS.url,
       user:DBParameters.SYBASE_PARAMS.user,
-      password:DBParameters.SYBASE_PARAMS.password
+      password:DBParameters.SYBASE_PARAMS.password,
+      minPoolSize: 10,
+      maxPoolSize: 50,
+      acquireIncrement: 5
     );
+
     sqlSybase = Sql.newInstance(sybase)
 
     ComboPooledDataSource mysql = new ComboPooledDataSource(
       driverClass:DBParameters.MYSQL_PARAMS.driver,
       jdbcUrl:DBParameters.MYSQL_PARAMS.url,
       user:DBParameters.MYSQL_PARAMS.user,
-      password:DBParameters.MYSQL_PARAMS.password
+      password:DBParameters.MYSQL_PARAMS.password,
+      minPoolSize: 10,
+      maxPoolSize: 50,
+      acquireIncrement: 5
+
     );
     sqlMySQL = Sql.newInstance(mysql)
   }

@@ -6,10 +6,11 @@ class SybaseToMySQLOneBIgTableTests extends groovy.util.GroovyTestCase{
 
   void setUp(){
     table1 = new TablaAMigrar()
-    table1.tableName = "cuentas"
+    table1.tableName = "genexExamenText"
   }
 
   void testMigrateBigTable(){
-    table1.migrateBigTable()
+    def result = table1.migrateBigTable()
+    log.info("El resultado fue: $result")
   }
 }

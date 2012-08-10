@@ -110,8 +110,11 @@ class TablaAMigrar{
                 temp = numRows - offset +1
            }
           try {
+              log.info "Obteniendo la informacion de la tabla $tableName"
               data = obtainDataFromOrigin(sqlSybase,offset,temp).collect { currentMap -> currentMap*.value }
+              log.info "Persistiendo la informacion de la tabla $tableName ne MYSQL"
               result = makingBatchOperations(sqlMySql,data)
+              log.info "Informacion  persistida en la tabla $tableName de mysql"
           }catch(Throwable e){
               log.info "***Error insertando datos en $tableName ***"
               delete(sqlMySql,tableName)
