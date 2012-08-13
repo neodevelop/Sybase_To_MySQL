@@ -4,7 +4,7 @@ import groovy.util.logging.*
 
 @Log
 class TablaAMigrar{
-  def tableName
+  private def tableName
   def columnNames = []
   
   def processMetaMySQL = { metaData ->
@@ -16,7 +16,14 @@ class TablaAMigrar{
   TablaAMigrar(){
     
   }
-  
+
+  void setTableName(def tableName) {
+      this.tableName = tableName
+      DB.instance.withMySQLInstance { sql ->
+          obtainColumnNames(sql)
+      }
+  }
+
   def migrate() {
       def numRows
       DB.instance.withSybaseInstance() { sql ->
@@ -47,6 +54,8 @@ class TablaAMigrar{
     sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName)){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
+        if (row["$name"]!= null)
+        log.info row["$name"].class.name
         dataMap."$name" = row["$name"]
       }
       data << dataMap
@@ -77,9 +86,6 @@ class TablaAMigrar{
       def result
       def exception =""
       def numRowsMySQL
-      DB.instance.withMySQLInstance { sql ->
-          obtainColumnNames(sql)
-      }
       def tiempoInicial = new Date()
       DB.instance.withSybaseInstance() { sql ->
           data = obtainDataFromOrigin(sql).collect { currentMap -> currentMap*.value }
@@ -107,7 +113,6 @@ class TablaAMigrar{
       def sqlMySql =   DB.instance.sqlMySQL
       def sqlSybase = DB.instance.sqlSybase
       def exception=""
-      obtainColumnNames(sqlMySql)
       int offset = 1
       int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
       def temp = maximo
@@ -140,6 +145,31 @@ class TablaAMigrar{
      return "$tableName|$numRows|$numRowsMySQL|"+(numRows==numRowsMySQL) +"|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
   }
 
+  private def migratePartialTable(def offset, def maximo) {
+        def data
+        def result=0
+        def sqlMySql =   DB.instance.sqlMySQL
+        def sqlSybase = DB.instance.sqlSybase
+        def exception=""
+        def numRowsMySQL
+        log.info "El numero de renglones para migrar de la tabla $tableName  es : $maximo"
+        def tiempoInicial = new Date()
+        try {
+            log.info "Obteniendo la informacion de la tabla $tableName"
+            data = obtainDataFromOrigin(sqlSybase,offset,maximo).collect { currentMap -> currentMap*.value }
+            log.info "Persistiendo la informacion de la tabla $tableName en MYSQL"
+            result = makingBatchOperations(sqlMySql,data)
+            log.info "Informacion  persistida en la tabla $tableName de mysql"
+        }catch(Throwable e){
+            exception= e.message
+            log.info "***Error insertando datos en $tableName ***"
+            delete(sqlMySql,tableName)
+        }
+        def tiempoFinal=new Date()
+        log.info "Proceso de migracion parcial de tabla terminado"
+        return "$tableName|$maximo|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
+    }
+
     private def obtainDataFromOrigin(sql, offset, limit){
         def data = []
         //log.info queryFull.toString()
@@ -159,4 +189,43 @@ class TablaAMigrar{
         }
         return word
     }
+
+   def generateIntervals() {
+        int offset = 1
+        int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
+        def numRows
+        def temp = maximo
+        DB.instance.withSybaseInstance() { sql ->
+           numRows = count(sql)
+        }
+        def intervalList =[]
+        while (true) {
+            if (offset + maximo > numRows) {
+                temp = numRows - offset +1
+            }
+
+        def interval = new Interval(offset: offset, maximo: temp,tablaAMigrar: this)
+        intervalList.add(interval)
+        offset += maximo
+        if (offset > numRows)
+            break
+
+        }
+       intervalList
+    }
+
+    def getCountTable() {
+
+        def numRowsSybase
+        DB.instance.withSybaseInstance() { sql ->
+            numRowsSybase = count(sql)
+        }
+        def numRowsMySQL
+        DB.instance.withMySQLInstance() { sql ->
+            numRowsMySQL = count(sql)
+        }
+
+        return "$tableName|$numRowsSybase|$numRowsMySQL|"+(numRowsSybase==numRowsMySQL)
+    }
 }
+
