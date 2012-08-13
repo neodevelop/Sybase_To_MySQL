@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 
 class MigrateInfo {
   static File file
-  static File partialResultfileResult
+  static File fileResult
   static File partialResult
   def formatter = new SimpleDateFormat("ddMMyyyyHHmmss")
 
