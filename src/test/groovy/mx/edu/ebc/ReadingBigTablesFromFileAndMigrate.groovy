@@ -31,7 +31,7 @@ class ReadingBigTablesFromFileAndMigrate extends GroovyTestCase {
               log.info "Migrando el intervalo $interval.offset con el maximo $interval.maximo "
               def result=interval.tablaAMigrar.migratePartialTable(interval.offset,interval.maximo)
               log.info "Informacion del resultado parcial $result"
-              migrateInfo.savePartialResultToFile(result)
+              migrateInfo.savePartialResultToFile(result+"\n")
           }
       }
      migrateInfo.obtainTablesNamesFromFile().each {
