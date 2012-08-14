@@ -11,4 +11,5 @@ class Interval {
     def offset
     def maximo
     def tablaAMigrar
+    def columnName
 }

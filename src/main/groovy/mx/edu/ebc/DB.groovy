@@ -17,8 +17,9 @@ class DB{
       user:DBParameters.SYBASE_PARAMS.user,
       password:DBParameters.SYBASE_PARAMS.password,
       minPoolSize: 30,
-      maxPoolSize: 150,
-      acquireIncrement: 20
+      maxPoolSize: 80,
+      acquireIncrement: 10,
+      numHelperThreads:40
     );
 
     sqlSybase = Sql.newInstance(sybase)
@@ -29,9 +30,9 @@ class DB{
       user:DBParameters.MYSQL_PARAMS.user,
       password:DBParameters.MYSQL_PARAMS.password,
       minPoolSize: 30,
-      maxPoolSize: 150,
-      acquireIncrement: 20
-
+      maxPoolSize: 80,
+      acquireIncrement: 10,
+      numHelperThreads:40
     );
     sqlMySQL = Sql.newInstance(mysql)
   }

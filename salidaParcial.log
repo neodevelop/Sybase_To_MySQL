@@ -1,0 +1,844 @@
+:compileJava UP-TO-DATE
+:compileGroovy
+:processResources UP-TO-DATE
+:classes
+:compileTestJava UP-TO-DATE
+:compileTestGroovy
+:processTestResources UP-TO-DATE
+:testClasses
+:test
+
+mx.edu.ebc.SybaseToMySQLOneBIgTableTests > testMigrateBigTable STANDARD_ERROR
+    14/08/2012 01:20:52 PM com.mchange.v2.log.MLog <clinit>
+    INFO: MLog clients using java 1.4+ standard logging.
+    14/08/2012 01:20:52 PM com.mchange.v2.c3p0.C3P0Registry banner
+    INFO: Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+    14/08/2012 01:20:52 PM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource getPoolManager
+    INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 10, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> z8kfsx8pan8hn11qcjaq3|560932fe, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> z8kfsx8pan8hn11qcjaq3|560932fe, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://192.1.2.229/isybase, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 50, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 30, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource getPoolManager
+    INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 10, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> z8kfsx8pan8hn11qcjaq3|7b35ae7e, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.ddtek.jdbc.sybase.SybaseDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> z8kfsx8pan8hn11qcjaq3|7b35ae7e, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:datadirect:sybase://192.1.2.247:2007;DatabaseName=alu, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 50, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 30, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:53 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 1 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 4001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 12001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 308001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 8001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM sun.reflect.NativeMethodAccessorImpl invoke0
+    INFO: Migrando el intervalo 16001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 316001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 264001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 32001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 240001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 268001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 20001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 296001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 44001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 168001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 236001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 212001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 76001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 340001 con el maximo 4000 
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 284001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 208001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 272001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 244001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 196001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 52001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 348001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 344001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 24001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 72001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 256001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 164001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 80001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 228001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 312001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 232001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 68001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 252001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 88001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 64001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 336001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 220001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 152001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 36001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 84001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 332001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 352001 con el maximo 1379 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 176001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 132001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 320001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Migrando el intervalo 184001 con el maximo 4000 
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:55 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 1379
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:56 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:57 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: El numero de renglones para migrar de la tabla doctos_dia_calen  es : 4000
+    14/08/2012 01:20:58 PM sun.reflect.GeneratedMethodAccessor11 invoke
+    INFO: Obteniendo la informacion de la tabla doctos_dia_calen
+    14/08/2012 01:20:59 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:20:59 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:21:02 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:21:02 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    14/08/2012 01:21:13 PM com.mchange.v2.async.ThreadPoolAsynchronousRunner$DeadlockDetector run
+    ADVERTENCIA: com.mchange.v2.async.ThreadPoolAsynchronousRunner$DeadlockDetector@24348ab2 -- APPARENT DEADLOCK!!! Creating emergency threads for unassigned pending tasks!
+    14/08/2012 01:21:13 PM com.mchange.v2.async.ThreadPoolAsynchronousRunner$DeadlockDetector run
+    ADVERTENCIA: com.mchange.v2.async.ThreadPoolAsynchronousRunner$DeadlockDetector@24348ab2 -- APPARENT DEADLOCK!!! Complete Status: 
+    	Managed Threads: 3
+    	Active Threads: 3
+    	Active Tasks: 
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@333c339f (com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2)
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@35612600 (com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1)
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@7d05e560 (com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0)
+    	Pending Tasks: 
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@e1641c0
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@5736ab79
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@4633c1aa
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@6fefa3e7
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@5df1cc1a
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@2d8eef25
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@2f67d81
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@4a9a1ac
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@1cb52598
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@38b72ce1
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@1e384de
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@280bca
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@451dfada
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@334021a9
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@3761f888
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@103c520
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@1e82b865
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@1817fe89
+    		com.mchange.v2.resourcepool.BasicResourcePool$1RefurbishCheckinResourceTask@4f47e0ba
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@77f2fbff
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@717e5fde
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@1fc82208
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@c324b85
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@39fc0f04
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@533ded59
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@6a998c1
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@686baa51
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@747ae165
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@2f63e9a1
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@487f6155
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@22cf38a2
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@528f2588
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@33e92e10
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@11cf3710
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@3b280492
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@40442b95
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@3b896429
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@390ede48
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@7f23663b
+    Pool thread stack traces:
+    	Thread[com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2,5,main]
+    		java.net.SocketInputStream.socketRead0(Native Method)
+    		java.net.SocketInputStream.read(SocketInputStream.java:129)
+    		com.ddtek.sybaseutil.ddai.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.b(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.a(Unknown Source)
+    		com.ddtek.jdbc.sybase.ddc.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddr.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddv.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddj.b(Unknown Source)
+    		com.ddtek.jdbc.sybase.tds.ddn.f(Unknown Source)
+    		com.ddtek.jdbc.sybase.SybaseImplConnection.g(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.b(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.k(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseDriver.connect(Unknown Source)
+    		com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:134)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:182)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:171)
+    		com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:137)
+    		com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    		com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    		com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    	Thread[com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1,5,main]
+    		java.net.SocketInputStream.socketRead0(Native Method)
+    		java.net.SocketInputStream.read(SocketInputStream.java:129)
+    		com.ddtek.sybaseutil.ddai.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.b(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.a(Unknown Source)
+    		com.ddtek.jdbc.sybase.ddc.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddr.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddv.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddj.b(Unknown Source)
+    		com.ddtek.jdbc.sybase.tds.ddn.f(Unknown Source)
+    		com.ddtek.jdbc.sybase.SybaseImplConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybase.SybaseImplConnection.g(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.b(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.k(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseDriver.connect(Unknown Source)
+    		com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:134)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:182)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:171)
+    		com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:137)
+    		com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    		com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    		com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+    	Thread[com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0,5,main]
+    		java.net.SocketInputStream.socketRead0(Native Method)
+    		java.net.SocketInputStream.read(SocketInputStream.java:129)
+    		com.ddtek.sybaseutil.ddai.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.b(Unknown Source)
+    		com.ddtek.sybaseutil.ddf.a(Unknown Source)
+    		com.ddtek.jdbc.sybase.ddc.a(Unknown Source)
+    		com.ddtek.sybaseutil.ddr.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddv.d(Unknown Source)
+    		com.ddtek.sybaseutil.ddj.b(Unknown Source)
+    		com.ddtek.jdbc.sybase.tds.ddn.f(Unknown Source)
+    		com.ddtek.jdbc.sybase.SybaseImplConnection.g(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.b(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.k(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseConnection.a(Unknown Source)
+    		com.ddtek.jdbc.sybasebase.BaseDriver.connect(Unknown Source)
+    		com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:134)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:182)
+    		com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:171)
+    		com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:137)
+    		com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    		com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    		com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    		com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:547)
+
+
+    14/08/2012 01:21:13 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:13 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:13 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:13 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:14 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:14 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:18 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:18 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:28 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:28 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:32 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Database changed to alu
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:21:32 PM com.mchange.v2.c3p0.SQLWarnings logAndClearWarnings
+    INFO: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    java.sql.SQLWarning: [DataDirect][Sybase JDBC Driver]Language changed to us_english
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.dde4.a(Unknown Source)
+    	at com.ddtek.jdbc.sybasebase.BaseConnection.getWarnings(Unknown Source)
+    	at com.mchange.v2.c3p0.impl.NewProxyConnection.getWarnings(NewProxyConnection.java:907)
+    	at com.mchange.v2.c3p0.SQLWarnings.logAndClearWarnings(SQLWarnings.java:42)
+    	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:187)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1014)
+    	at com.mchange.v2.resourcepool.BasicResourcePool.access$800(BasicResourcePool.java:32)
+    	at com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask.run(BasicResourcePool.java:1810)
+    	at com.mchange.v2.async.ThreadPerTaskAsynchronousRunner$TaskThread.run(ThreadPerTaskAsynchronousRunner.java:255)
+    14/08/2012 01:22:13 PM com.mchange.v2.async.ThreadPoolAsynchronousRunner processReplacedThreads
+    ADVERTENCIA: Task com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@333c339f (in deadlocked PoolThread) failed to complete in maximum time 60000ms. Trying interrupt().
+    14/08/2012 01:22:13 PM com.mchange.v2.async.ThreadPoolAsynchronousRunner processReplacedThreads
+    ADVERTENCIA: Task com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@35612600 (in deadlocked PoolThread) failed to complete in maximum time 60000ms. Trying interrupt().
+    14/08/2012 01:22:13 PM com.mchange.v2.async.ThreadPoolAsynchronousRunner processReplacedThreads
+    ADVERTENCIA: Task com.mchange.v2.resourcepool.BasicResourcePool$AcquireTask@7d05e560 (in deadlocked PoolThread) failed to complete in maximum time 60000ms. Trying interrupt().

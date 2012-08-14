@@ -7,13 +7,12 @@ class SybaseToMySQLOneBIgTableTests extends groovy.util.GroovyTestCase{
     def  migrateInfo
 
   void setUp(){
-
       migrateInfo = new MigrateInfo()
   }
 
   void testMigrateBigTable(){
       def table1 = new TablaAMigrar()
-      table1.tableName = "ci_ifcob01"
+      table1.tableName = "doctos_dia_calen"
       def intervals = table1.generateIntervals()
       withPool(50) {
           intervals.eachParallel { interval ->
@@ -23,6 +22,5 @@ class SybaseToMySQLOneBIgTableTests extends groovy.util.GroovyTestCase{
               migrateInfo.saveResultToFile(result+"\n")
           }
       }
-
   }
 }

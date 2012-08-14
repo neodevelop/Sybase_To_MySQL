@@ -18,5 +18,4 @@ interface DBParameters{
 
   def SYBASE_SELECT_MAX_ROWS=4000
 
-  def MAX_ROWS_MIGRATE=5000
 }

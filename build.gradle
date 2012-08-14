@@ -3,6 +3,7 @@ apply plugin: 'idea'
 
 test {
     jvmArgs '-Xms1024m', '-Xmx1024m'
+    testLogging.showStandardStreams = true
 }
 
 repositories {

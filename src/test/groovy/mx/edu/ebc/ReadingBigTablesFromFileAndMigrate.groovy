@@ -23,8 +23,8 @@ class ReadingBigTablesFromFileAndMigrate extends GroovyTestCase {
       table.tableName = name
       def intervalsT = table.generateIntervals()
       intervals.addAll(intervalsT)
-
     }
+
      migrateInfo.createPartialResultFile()
       withPool(50) {
           intervals.eachParallel { interval ->

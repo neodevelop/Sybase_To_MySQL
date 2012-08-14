@@ -24,6 +24,16 @@ class TablaAMigrar{
       }
   }
 
+
+  def migrateTableWithoutKey() {
+      def numRows
+      DB.instance.withSybaseInstance() { sql ->
+          numRows = count(sql)
+      }
+
+      migrateSmallTable(numRows)
+  }
+
   def migrate() {
       def numRows
       DB.instance.withSybaseInstance() { sql ->
@@ -50,12 +60,10 @@ class TablaAMigrar{
   
   private def obtainDataFromOrigin(sql){
     def data = []
-    //log.info queryFull.toString()
     sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName)){ row ->
       def dataMap = [:]
       columnNames.each{ name ->
         if (row["$name"]!= null)
-        log.info row["$name"].class.name
         dataMap."$name" = row["$name"]
       }
       data << dataMap
@@ -170,10 +178,49 @@ class TablaAMigrar{
         return "$tableName|$maximo|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
     }
 
+    private def migratePartialTableByColumn(def offset, def maxValue,def columnName) {
+        def data
+        def result=0
+        def sqlMySql =   DB.instance.sqlMySQL
+        def sqlSybase = DB.instance.sqlSybase
+        def exception=""
+        def numRowsMySQL
+        log.info "El numero de renglones para migrar de la tabla $tableName  es : $maxValue"
+        def tiempoInicial = new Date()
+        try {
+            log.info "Obteniendo la informacion de la tabla $tableName"
+            data = obtainDataFromOrigin(sqlSybase,offset,maxValue,columnName).collect { currentMap -> currentMap*.value }
+            log.info "Persistiendo la informacion de la tabla $tableName en MYSQL"
+            result = makingBatchOperations(sqlMySql,data)
+            log.info "Informacion  persistida en la tabla $tableName de mysql"
+        }catch(Throwable e){
+            exception= e.message
+            log.info "***Error insertando datos en $tableName ***"
+            delete(sqlMySql,tableName)
+        }
+        def tiempoFinal=new Date()
+        log.info "Proceso de migracion parcial de tabla terminado"
+        return "$tableName|$maxValue|" +((tiempoFinal.time - tiempoInicial.time)/60000 )+"|$exception"
+    }
+
     private def obtainDataFromOrigin(sql, offset, limit){
         def data = []
         //log.info queryFull.toString()
         sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName),offset,limit){ row ->
+            def dataMap = [:]
+            columnNames.each{ name ->
+                dataMap."$name" = row["$name"]
+            }
+            data << dataMap
+        }
+        data
+    }
+
+    private def obtainDataFromOrigin(sql, offset, maxVaue,columnName){
+        def data = []
+        //log.info queryFull.toString()
+        sql.eachRow(("SELECT "+columnNames.join(',')+" FROM alu.dbo."+tableName +
+          " where "+columnName +" between "+offset+"  and "+maxVaue)){ row ->
             def dataMap = [:]
             columnNames.each{ name ->
                 dataMap."$name" = row["$name"]
@@ -215,8 +262,7 @@ class TablaAMigrar{
     }
 
     def getCountTable() {
-
-        def numRowsSybase
+      def numRowsSybase
         DB.instance.withSybaseInstance() { sql ->
             numRowsSybase = count(sql)
         }
@@ -224,8 +270,42 @@ class TablaAMigrar{
         DB.instance.withMySQLInstance() { sql ->
             numRowsMySQL = count(sql)
         }
-
         return "$tableName|$numRowsSybase|$numRowsMySQL|"+(numRowsSybase==numRowsMySQL)
     }
+
+
+    def generateIntervalsByColumn(def columnName) {
+        int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
+        def syBaseInstance = DB.instance.sqlSybase
+        def offset = min(syBaseInstance,columnName)
+        def maxValue= max(syBaseInstance,columnName)
+        def upperValue
+        def intervalList =[]
+        while (true) {
+            upperValue = offset + maximo
+            if (upperValue > maxValue) {
+                upperValue = maxValue
+            }
+            def interval = new Interval(offset: offset, maximo: upperValue,tablaAMigrar: this,columnName:columnName)
+            intervalList.add(interval)
+            offset =offset+ maximo+1
+            if (offset > maxValue)
+                break
+        }
+        intervalList
+    }
+
+
+    def max(sql,columnName)  {
+      def resultado=  sql.firstRow("SELECT max("+columnName+") AS maximo FROM " + tableName)
+        return  resultado.get("maximo")
+    }
+
+    def min(sql,columnName)   {
+       def resultado= sql.firstRow("SELECT min("+columnName+") AS minimo FROM " + tableName)
+       return resultado.get("minimo")
+    }
+
+
 }
 
