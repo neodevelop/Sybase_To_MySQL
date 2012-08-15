@@ -12,8 +12,9 @@ class ReadingBigTablesByColumnFromFileAndMigrate extends GroovyTestCase {
 
     void testGettingTables(){
         assertNotNull migrateInfo
-        assertNotNull migrateInfo.obtainTablesNamesFromFile()
-        assertTrue migrateInfo.obtainTablesNamesFromFile().size() > 0
+        def lineas =migrateInfo.obtainTablesNamesAndColumnFromFile()
+        assertNotNull lineas
+        assertTrue lineas.size() > 0
   }
 
   void testGettingTablesAndMigrate(){
