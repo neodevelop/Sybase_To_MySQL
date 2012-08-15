@@ -274,8 +274,8 @@ class TablaAMigrar{
     }
 
 
-    def generateIntervalsByColumn(def columnName) {
-        int maximo=DBParameters.SYBASE_SELECT_MAX_ROWS
+    def generateIntervalsByColumn(def columnName, def numRowsMax) {
+        int maximo=numRowsMax
         def syBaseInstance = DB.instance.sqlSybase
         def offset = min(syBaseInstance,columnName)
         def maxValue= max(syBaseInstance,columnName)
@@ -293,7 +293,7 @@ class TablaAMigrar{
                 break
         }
         intervalList
-    }
+   }
 
 
     def max(sql,columnName)  {
