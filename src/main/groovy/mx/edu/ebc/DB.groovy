@@ -16,7 +16,7 @@ class DB{
       jdbcUrl:DBParameters.SYBASE_PARAMS.url,
       user:DBParameters.SYBASE_PARAMS.user,
       password:DBParameters.SYBASE_PARAMS.password,
-      minPoolSize: 30,
+      minPoolSize: 5,
       maxPoolSize: 80,
       acquireIncrement: 10,
       numHelperThreads:40
@@ -29,7 +29,7 @@ class DB{
       jdbcUrl:DBParameters.MYSQL_PARAMS.url,
       user:DBParameters.MYSQL_PARAMS.user,
       password:DBParameters.MYSQL_PARAMS.password,
-      minPoolSize: 30,
+      minPoolSize: 5,
       maxPoolSize: 80,
       acquireIncrement: 10,
       numHelperThreads:40

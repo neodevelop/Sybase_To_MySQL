@@ -21,6 +21,9 @@ class ReadingBigTablesFromFileAndMigrate extends GroovyTestCase {
     migrateInfo.obtainTablesNamesFromFile().each { name ->
       def table = new TablaAMigrar()
       table.tableName = name
+      DB.instance.withMySQLInstance { sql ->
+            table.obtainColumnNames(sql)
+        }
       def intervalsT = table.generateIntervals()
       intervals.addAll(intervalsT)
     }

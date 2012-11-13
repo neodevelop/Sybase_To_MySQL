@@ -19,9 +19,7 @@ class TablaAMigrar{
 
   void setTableName(def tableName) {
       this.tableName = tableName
-      DB.instance.withMySQLInstance { sql ->
-          obtainColumnNames(sql)
-      }
+
   }
 
 
@@ -29,6 +27,10 @@ class TablaAMigrar{
       def numRows
       DB.instance.withSybaseInstance() { sql ->
           numRows = count(sql)
+      }
+
+      DB.instance.withMySQLInstance { sql ->
+          obtainColumnNames(sql)
       }
 
       migrateSmallTable(numRows)
@@ -39,6 +41,11 @@ class TablaAMigrar{
       DB.instance.withSybaseInstance() { sql ->
           numRows = count(sql)
       }
+
+      DB.instance.withMySQLInstance { sql ->
+          obtainColumnNames(sql)
+      }
+
       if (numRows <= DBParameters.SYBASE_SELECT_MAX_ROWS) {
           migrateSmallTable(numRows)
       } else {
@@ -54,7 +61,7 @@ class TablaAMigrar{
    sql.executeUpdate("delete from isybase.$tableName")
   }
 
-  private def obtainColumnNames(sql){
+  def obtainColumnNames(sql){
     sql.eachRow(("SELECT * FROM " + tableName),processMetaMySQL){ }
   }
   

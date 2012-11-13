@@ -28,6 +28,9 @@ class ReadingBigTablesByColumnFromFileAndMigrate extends GroovyTestCase {
           log.info("Se migrara la tabla " + campos[0] +" con el campo "+ campos[1] +" y se traera fracciones de " +tamanoMaximo)
          def table = new TablaAMigrar()
          table.tableName = campos[0]
+        DB.instance.withMySQLInstance { sql ->
+            table.obtainColumnNames(sql)
+        }
          def intervalsT = table.generateIntervalsByColumn(campos[1],tamanoMaximo)
          intervals.addAll(intervalsT)
      }
@@ -39,9 +42,10 @@ class ReadingBigTablesByColumnFromFileAndMigrate extends GroovyTestCase {
        }
      }
       migrateInfo.createNewResultFile()
-      migrateInfo.obtainTablesNamesAndColumnFromFile().each {
+      migrateInfo.obtainTablesNamesAndColumnFromFile().each {  line ->
+          def campos= line.tokenize("|")
           def tableT = new TablaAMigrar()
-          tableT.tableName = name
+          tableT.tableName = campos[0]
           def dataCount = tableT.getCountTable()
           migrateInfo.saveResultToFile(dataCount+"\n")
       }
